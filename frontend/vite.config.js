@@ -6,12 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3007,
-    // Get rid of the CORS error
+    host: '0.0.0.0',  // Ensure it's accessible externally
     proxy: {
       "/api": {
-        target: "0.0.0.0:3006",
+        target: "http://localhost:3006",  // Ensure to use the correct protocol (http or https)
         changeOrigin: true,
-        secure: false,
+        secure: false, // Adjust based on your server's SSL setup
       },
     },
   },
